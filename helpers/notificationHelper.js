@@ -1,7 +1,7 @@
 const { orderStatus, cartStatus } = require('../configuration/index');
 const Notification = require('../models/notification');
 
-const generateOrderStatusChangeNotification = (userId, adminId, orderName, orderStatusNum) => {
+const generateOrderStatusChangeNotification = (userId, adminId, orderName, orderStatusNum, orderId) => {
     let orderStatusMsg = 'Your order ' + orderName + ' ';
     switch (orderStatusNum) {
         case orderStatus.unplaced:
@@ -41,7 +41,8 @@ const generateOrderStatusChangeNotification = (userId, adminId, orderName, order
         createdBy: adminId,
         createdOn: new Date(),
         message: orderStatusMsg,
-        userId: userId
+        userId: userId,
+        orderId: orderId
     });
 
     return notification;

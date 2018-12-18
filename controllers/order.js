@@ -570,7 +570,7 @@ module.exports = {
             }
 
             if (updatedOrder) {
-                const notification = generateOrderStatusChangeNotification(orderInDb.requestedBy, daiictId, orderInDb.serviceName, updateAtt.status);
+                const notification = generateOrderStatusChangeNotification(orderInDb.requestedBy, daiictId, orderInDb.serviceName, updateAtt.status, orderId);
                 await notification.save();
 
                 const filteredOrder = filterResourceData(updatedOrder, readPermission.attributes);
@@ -673,7 +673,7 @@ module.exports = {
 
                     await cart.save();
 
-                    let notification = generateOrderStatusChangeNotification(order.requestedBy, daiictId, order.serviceName, orderStatus.cancelled);
+                    let notification = generateOrderStatusChangeNotification(order.requestedBy, daiictId, order.serviceName, orderStatus.cancelled, orderId);
                     await notification.save();
 
                     let templateName = 'cancelOrder';
